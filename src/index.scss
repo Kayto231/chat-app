@@ -702,6 +702,11 @@ body {
           min-width: 375px;
           width: 375px;
         }
+        .menu {
+          .dropdown__menu {
+            left: -300px !important;
+          }
+        }
       }
       .chatpage__content {
         height: 100%;
@@ -742,6 +747,7 @@ body {
                 width: 160px;
                 .message_item {
                   min-width: 60px;
+                  margin-left: 20px;
                 }
               }
             }
