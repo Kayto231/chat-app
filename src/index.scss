@@ -680,12 +680,11 @@ body {
     max-width: 375px;
   }
   .wrapper {
-    min-width: 375px;
+    height: 100%;
     width: 100%;
 
-    min-height: 812px;
-
     .chatpage {
+      height: 100%;
       .main__header {
         min-width: 375px;
 
@@ -715,7 +714,7 @@ body {
           min-height: 0;
           height: 642px;
           .chats {
-            max-height: 600px;
+            height: 100%;
             width: 100%;
           }
         }
@@ -723,14 +722,14 @@ body {
         .chatpage__messages {
           min-height: 0;
           min-width: 375px;
-          height: 640px;
+          height: 100%;
           .main_messages_panel {
             width: 100%;
             overflow-y: scroll;
 
             .messages__from_sender {
               align-items: flex-start;
-              flex: 1 1 50%;
+              width: 40%;
               .profile_photo {
                 display: none;
               }
@@ -744,11 +743,12 @@ body {
             .messages_date {
               position: absolute;
               left: 35%;
+              flex: 0;
             }
             .messages__from_me {
               margin-right: 0;
               align-items: flex-start;
-              flex: 1 1 50%;
+              width: 40%;
 
               .profile_photo {
                 display: none;
