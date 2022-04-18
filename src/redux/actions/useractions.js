@@ -38,9 +38,17 @@ export const isUserStillValidFunction = () => {
     const response = await axios.post(authUrl, token, {
       headers: { "Authorization": `Bearer ${token}` },
     });
-
     const { username, state, id } = response.data;
 
+    if (response.data.name === "TokenExpiredError") {
+      localStorage.removeItem("Token");
+      dispatch(
+        loginUserInAction({
+          state: false,
+          isLoading: false,
+        })
+      );
+    }
     dispatch(
       loginUserInAction({
         user: { username, status: "Busy", id },
