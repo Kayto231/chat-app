@@ -18,99 +18,225 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  min-height: 100%;
-  min-width: 100%;
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: #000;
-    border: 1px solid grey;
+  height: 100%;
+  width: 100%;
 
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      color: #ffffff;
-      background-color: #000;
-    }
-  }
   .register__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background: #093545;
     height: 100%;
     width: 100%;
-    .register__text {
-      display: flex;
-      width: 20%;
-      .link__back {
-        margin-right: 10px;
-        width: 30%;
-      }
-      .register__welcome {
-        display: flex;
-        flex-direction: column;
-        // width: 65%;
-      }
-    }
     .register__form {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin: 0 auto;
       min-width: 375px;
-      min-height: 400px;
-      width: 50%;
+      height: 100%;
+      .text {
+        margin-bottom: 40px;
+        text-align: center;
+        font-weight: 400;
+        font-style: normal;
+        color: #ffffff;
+      }
+      .text__big {
+        font-size: 64px;
+        line-height: 80px;
+      }
+      .text__small {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
       .input {
-        outline: none;
-        border: 2px solid none;
-        width: 80%;
-        height: 40px;
-        margin-bottom: 10px;
-      }
-      .register__nickname {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        min-width: 350px;
-        width: 35%;
-        .is__error__in__nickname {
-          width: 100%;
-          color: red;
-        }
-      }
-      .register__password {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        min-width: 350px;
-        width: 35%;
-        .is__error__in__pasword {
-          width: 100%;
-          color: red;
-        }
+        background: #224957;
+        border-radius: 10px;
+        width: 300px;
+        height: 45px;
+        margin-bottom: 32px;
+        color: #ffffff;
       }
       .register__button__block {
-        .register__button {
-          min-width: 100px;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+
+        .link__login {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          color: #000;
+          width: 100%;
+
+          transition: color 0.3s ease-in-out;
+          &:hover {
+            color: #ffffff;
+          }
         }
+      }
+      .button {
+        background: #20df7f;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        color: #000;
+        width: 300px;
+        height: 45px;
+        margin: 10px 0px;
+        border: 0;
+        cursor: pointer;
+
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+    .img {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      .img__background {
+        margin-bottom: 0;
+        width: 100%;
       }
     }
   }
 
+  // Login
   .login__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background-color: #e5e5e5;
     height: 100%;
     width: 100%;
+
+    .login__form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      min-width: 375px;
+      height: 100%;
+      .text {
+        margin-bottom: 40px;
+        text-align: center;
+        font-weight: 400;
+        font-style: normal;
+        color: #224957;
+      }
+      .text__big {
+        font-size: 64px;
+        line-height: 80px;
+      }
+      .text__small {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .input {
+        background: #224957;
+        border-radius: 10px;
+        width: 300px;
+        height: 45px;
+        margin-bottom: 32px;
+        color: #ffffff;
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 300px;
+
+        .remember__me {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          .checkbox {
+            width: 13px;
+            height: 13px;
+            margin-right: 7px;
+            background: #224957;
+            border-radius: 3px;
+          }
+
+          .rebember__me__text {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: #093545;
+          }
+        }
+        .forgot__pass {
+          .forgot__link {
+            text-decoration: none;
+
+            .forgot__pass__text {
+              font-style: normal;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 17px;
+              text-align: center;
+              color: #000000;
+            }
+          }
+        }
+      }
+      .button {
+        background: #20df7f;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        width: 300px;
+        height: 45px;
+        margin: 10px 0px;
+        border: 0;
+        cursor: pointer;
+
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          color: #ffffff;
+        }
+      }
+      .register__button__block {
+        display: flex;
+        flex-direction: column;
+
+        .register__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          color: #000;
+          transition: color 0.3s ease-in-out;
+          &:hover {
+            color: #ffffff;
+          }
+        }
+      }
+      .img {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        .img__background {
+          margin-bottom: 0;
+          width: 100%;
+        }
+      }
+    }
     .lds-ripple {
       display: inline-block;
       position: relative;
@@ -141,60 +267,6 @@ body {
         width: 72px;
         height: 72px;
         opacity: 0;
-      }
-    }
-
-    .login__form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-width: 375px;
-      min-height: 400px;
-      width: 50%;
-
-      .input {
-        outline: none;
-        border: 2px solid none;
-        width: 80%;
-        height: 40px;
-        margin-bottom: 10px;
-      }
-      .login__nickname {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        min-width: 350px;
-        width: 35%;
-        .is__error__in__nickname {
-          width: 100%;
-          color: red;
-        }
-      }
-      .login__password {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        min-width: 350px;
-        width: 35%;
-        .is__error__in__pasword {
-          width: 100%;
-          color: red;
-        }
-      }
-
-      .login__button__block {
-        .register__button {
-          min-width: 100px;
-          margin-bottom: 10px;
-        }
-        .login__button {
-          min-width: 100px;
-        }
       }
     }
   }
@@ -324,24 +396,21 @@ body {
       display: flex;
       width: 100%;
       height: 100%;
-      min-height: 500px;
 
       // height: 100%;
 
       .chatpage__navigation {
         display: flex;
         flex-direction: column;
-
+        height: 100%;
         margin: 10px 0px 0px 0px;
         flex: 0 0 350px;
         background: #e3f6fc;
         border-radius: 14px 14px 0px 0px;
-        min-height: calc(100vh - 110px);
-        max-height: fit-content;
 
         .chats {
           overflow-y: scroll;
-          max-height: 1140px;
+          height: 100%;
           margin-bottom: 10px;
           flex: 1 1 auto;
 
@@ -428,7 +497,6 @@ body {
           .bottom__menu {
             display: flex;
             justify-content: center;
-            // padding: 25px 50px 40px 50px;
             list-style-type: none;
             .item {
               margin-right: 60px;
@@ -446,8 +514,7 @@ body {
       }
       .chatpage__messages {
         width: 100%;
-        min-height: calc(100vh - 110px);
-        max-height: fit-content;
+        height: 100%;
         display: flex;
         flex-direction: column;
 
@@ -603,6 +670,7 @@ body {
 @media screen and (max-width: 770px) {
   .wrapper {
     width: 100%;
+    height: 100%;
     .chatpage {
       .main__header {
         width: 100%;
@@ -628,11 +696,12 @@ body {
         }
         .chatpage__navigation {
           width: 770px;
-
+          height: 100%;
           flex: 1;
           min-width: 375px;
 
           .chats {
+            height: 100%;
             align-items: center;
             flex-direction: column;
             display: flex;

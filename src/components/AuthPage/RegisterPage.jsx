@@ -30,53 +30,56 @@ function RegisterPage() {
       : setDisabled(true);
   };
   return (
-    <div className='register__container'>
-      <div className='register__text'>
-        <Link className='button link__back' to={"auth/login"}>
-          Get back
-        </Link>
-        <div className='register__welcome'>
-          <span>Welcome to chat up!</span>
-          <span>Registration</span>
-        </div>
-      </div>
-      <div className='register__form'>
-        <div className='register__nickname'>
+    <div className="register__container">
+      <div className="register__form">
+        <h1 className="text text__big">Register</h1>
+        <span className="text text__small">Sign in and start chatting!</span>
+        <div className="register__nickname column">
           {nicknameError && (
-            <span className='is__error__in__nickname'>
+            <span className="is__error__in__nickname">
               Nickname must be longer than 4 symbols
             </span>
           )}
           <input
-            className='input'
-            type='text'
-            placeholder='Type your nickname.'
+            className="input"
+            type="text"
+            placeholder="Type your nickname."
             value={nickname}
             onChange={(e) => setNicknameHandler(e)}
           />
         </div>
-        <div className='register__password'>
+        <div className="register__password column">
           {passwordError && (
-            <span className='is__error__in__pasword'>
+            <span className="is__error__in__pasword">
               Nickname must be longer than 4 symbols
             </span>
           )}
           <input
-            className='input'
-            type='password'
-            placeholder='Type your password.'
+            className="input"
+            type="password"
+            placeholder="Type your password."
             value={password}
             onChange={(e) => setPasswordHandler(e)}
           />
         </div>
-        <div className='register__button__block'>
+        <div className="register__button__block">
           <button
-            className='button register__button'
+            className="button register__button"
             disabled={disabled}
             onClick={() => handleLogin()}
           >
-            <span className='button__text'>Register</span>
+            <span className="button__text">Register</span>
           </button>
+          <Link className="button link__login" to={"/auth/login"}>
+            Get back!
+          </Link>
+        </div>
+        <div className="img">
+          <img
+            src={"./img/authbackground.svg"}
+            className="img__background"
+            alt="authbackground"
+          />
         </div>
       </div>
     </div>
