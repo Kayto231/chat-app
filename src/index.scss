@@ -111,6 +111,9 @@ body {
 
   // Login
   .login__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #e5e5e5;
     height: 100%;
     width: 100%;
