@@ -40,7 +40,7 @@ export const isUserStillValidFunction = () => {
     });
     const { username, state, id } = response.data;
 
-    if (response.data.name === "TokenExpiredError") {
+    if (response.data.name !== "Token") {
       localStorage.removeItem("Token");
       dispatch(
         loginUserInAction({
