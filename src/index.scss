@@ -279,16 +279,17 @@ body {
     width: 100%;
     height: 100%;
     .main__header {
+      flex: 2 1 10%;
       display: flex;
-      height: 100px;
+      margin-bottom: 10px;
 
       .profile__info {
-        width: 350px;
+        min-width: 350px;
         background: #e3f6fc;
         border-radius: 0px 0px 14px 14px;
         display: flex;
-        // justify-content: center;
         align-items: center;
+
         .profilephoto {
           margin: 0px 15px 0px 35px;
         }
@@ -366,6 +367,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+
         .exit__button {
           cursor: pointer;
         }
@@ -396,10 +398,9 @@ body {
       }
     }
     .chatpage__content {
+      flex: 0 0 89%;
       display: flex;
-      width: 100%;
-      height: 100%;
-      max-height: calc(100% - 10%);
+      height: 0%;
 
       .welcome {
         display: flex;
@@ -418,8 +419,8 @@ body {
       .chatpage__navigation {
         display: flex;
         flex-direction: column;
-        height: calc(100% - 10px);
-        margin: 10px 0px 0px 0px;
+        height: 100%;
+        padding: 10px 0px 0px 0px;
         flex: 0 0 350px;
         background: #e3f6fc;
         border-radius: 14px 14px 0px 0px;
@@ -529,25 +530,28 @@ body {
         }
       }
       .chatpage__messages {
+        flex: 1 1 auto;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        // position: relative;
 
         .messages__block {
-          overflow-y: auto;
-          flex: 1;
-          height: 40%;
+          height: 100%;
+          max-height: 900px;
+          min-height: 200px;
+          flex: 1 1 90%;
+          overflow-y: scroll;
           &::-webkit-scrollbar {
             display: none;
           }
           .main_messages_panel {
             display: flex;
             flex-direction: column;
-            // flex: 1;
-            max-height: 80%;
+            height: 70%;
+
             width: 100%;
+
             .messages__from {
               display: flex;
               width: 100%;
@@ -556,22 +560,17 @@ body {
               .profile_photo {
                 margin: 0px 10px 30px 50px;
               }
-              .messages {
+
+              .message_item {
+                min-width: 140px;
                 display: flex;
-                flex-direction: column;
-                height: fit-content;
-                max-width: 300px;
-                .message_item {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  height: 45px;
-                  display: flex;
-                  background: #e3f6fc;
-                  border-radius: 0px 14px 14px 14px;
-                  min-width: 140px;
-                  padding: 5px;
-                }
+                align-items: center;
+                justify-content: center;
+                height: 45px;
+                display: flex;
+                background: #e3f6fc;
+                border-radius: 0px 14px 14px 14px;
+                padding: 5px;
               }
             }
             .sender {
@@ -584,23 +583,20 @@ body {
               .profile_photo {
                 margin: 0px 20px 0px 10px;
               }
-              .messages {
-                text-align: right;
-                .message_item {
-                  justify-content: center;
-                  background: #f3ba4a;
-                  border-radius: 14px 0px 14px 14px;
-                }
+
+              .message_item {
+                justify-content: center;
+                background: #f3ba4a;
+                border-radius: 14px 0px 14px 14px;
               }
             }
           }
         }
 
         .input__panel {
-          flex: 0;
+          flex: 0 0 5%;
           width: 100%;
           margin-bottom: 10px;
-          height: 45px;
           background-color: #ffffff;
           width: 100%;
           display: flex;
@@ -614,12 +610,12 @@ body {
             align-items: center;
             margin: 0px 60px 0px 27px;
             min-width: 300px;
-            width: calc(100% - 120px);
-            height: 40px;
+            flex: 1 1;
             background: #fdfdfd;
             border: 1px solid rgba(150, 169, 186, 0.7);
             box-sizing: border-box;
             border-radius: 14px;
+
             .attachment_icon {
               margin: 0px 25px 0px 25px;
               flex: 0 0 20px;
@@ -671,39 +667,35 @@ body {
 }
 @media screen and (max-width: 770px) {
   .wrapper {
-    width: 100%;
-    height: 100%;
     .chatpage {
+      min-height: 100%;
       .main__header {
+        flex: 1 1 15%;
         width: 100%;
-        min-width: 375px;
         flex-direction: column;
-        margin-bottom: 60px;
 
         .profile__info {
           justify-content: center;
           flex: 0 0 100px;
           width: 100%;
-          min-width: 375px;
         }
         .switcher__buttons {
           flex: 1;
           width: 100%;
-          min-width: 375px;
         }
       }
       .chatpage__content {
+        max-height: 80%;
         .opacity0 {
           display: none;
         }
         .chatpage__navigation {
-          width: 770px;
           height: 100%;
+          width: 100%;
           flex: 1;
-          min-width: 375px;
 
           .chats {
-            height: 100%;
+            margin-bottom: 0;
             align-items: center;
             flex-direction: column;
             display: flex;
@@ -711,25 +703,28 @@ body {
         }
 
         .chatpage__messages {
-          .main_messages_panel {
-            .messages__from_sender {
-              .profile_photo {
-                display: none;
-              }
-              .messages {
+          max-height: none;
+
+          .messages__block {
+            max-height: 90%;
+            .main_messages_panel {
+              .messages__from {
+                .profile_photo {
+                  display: none;
+                }
+
                 .message_item {
                 }
               }
-            }
-            .messages_date {
-            }
-            .messages__from_me {
-              .profile_photo {
-                display: none;
-              }
-              .messages {
-                width: 160px;
-                .message_item {
+
+              .messages__from_me {
+                .profile_photo {
+                  display: none;
+                }
+                .messages {
+                  width: 160px;
+                  .message_item {
+                  }
                 }
               }
             }
@@ -745,33 +740,16 @@ body {
 }
 
 @media screen and (max-width: 400px) {
-  html,
-  body,
-  #root {
-    max-width: 375px;
-  }
   .wrapper {
-    min-height: 100%;
-    width: 100%;
-
     .chatpage {
-      height: 100%;
       .main__header {
-        min-width: 375px;
-
-        width: 100%;
-        // max-width: 100%;
-        flex-direction: column;
-        margin-bottom: 60px;
+        margin-bottom: 0;
 
         .profile__info {
-          width: 100%;
-          flex: 0 0 100px;
           margin-bottom: 20px;
         }
         .switcher__buttons {
-          min-width: 375px;
-          width: 375px;
+          width: 100%;
         }
         .menu {
           .dropdown__menu {
@@ -780,18 +758,11 @@ body {
         }
       }
       .chatpage__content {
-        height: 100%;
-        width: 100%;
         .opacity0 {
           display: none;
         }
         .chatpage__navigation {
-          width: 100%;
-          height: 100%;
-          min-height: 0;
-          max-height: none;
-          flex: none;
-
+          margin: 0;
           .chats {
             height: 100%;
             width: 100%;
@@ -799,38 +770,30 @@ body {
         }
 
         .chatpage__messages {
-          width: 100%;
-          height: 100%;
-          min-width: 375px;
-          max-height: 100%;
-
           .messages__block {
-            max-height: 90%;
             .main_messages_panel {
-              width: 100%;
-              overflow-y: none;
-
-              .messages__from_sender {
-                align-items: flex-start;
-                width: 40%;
+              .messages__from {
                 .profile_photo {
                   display: none;
                 }
-                .messages {
-                  width: 160px;
-                  .message_item {
-                    min-width: 60px;
-                    margin-left: 20px;
-                  }
+
+                .message_item {
+                  height: 45px;
+                  width: 50%;
+                  margin-left: 20px;
                 }
               }
             }
           }
           .input__panel {
-            align-items: baseline;
+            margin-bottom: 0;
+            flex: 0 0;
+
             .input__menu {
               font-size: 16px;
-              margin: 15px 60px -10px 27px;
+              .input__block {
+                font-size: 16px;
+              }
             }
           }
         }

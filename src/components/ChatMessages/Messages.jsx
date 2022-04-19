@@ -15,18 +15,14 @@ function Messages({ currentMessages }) {
             <div className="profile_photo">
               <img src="./img/profilefoto.svg" alt="profilefoto" />
             </div>
-            <div className="messages">
-              <div className="message_item">{el.message}</div>
-            </div>
+            <div className="message_item">{el.message}</div>
           </li>
         ) : (
           <li key={i} className={`messages__from sender`}>
             <div className="profile_photo">
               <img src="./img/profilefoto.svg" alt="profilefoto" />
             </div>
-            <div className="messages">
-              <div className="message_item">{el.message}</div>
-            </div>
+            <div className="message_item">{el.message}</div>
           </li>
         )
       )}
