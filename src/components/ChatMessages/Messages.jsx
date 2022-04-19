@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import MessageData from "./MessageData";
-import MessagesFrom from "./MessagesFrom";
 
-function Messages() {
-  const { activeChat } = useSelector((state) => state.chat);
+function Messages({ currentMessages }) {
   const { user } = useSelector((state) => state.user);
-
+  const scrollRef = useRef();
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [currentMessages]);
   return (
-    <div className='main_messages_panel'>
-      {activeChat.map((el) =>
-        el._id === user.id
-          ? activeChat.map((el, i) => {
-              return (
-                <MessagesFrom sender={"me"} key={i} message={el.message} />
-              );
-            })
-          : activeChat.map((el, i) => {
-              console.log(el.message);
-              return (
-                <MessagesFrom sender={"sender"} key={i} message={el.message} />
-              );
-            })
+    <ul className="main_messages_panel">
+      {currentMessages.map((el, i) =>
+        el.sender === user.id ? (
+          <li ref={scrollRef} key={i} className={`messages__from me`}>
+            <div className="profile_photo">
+              <img src="./img/profilefoto.svg" alt="profilefoto" />
+            </div>
+            <div className="messages">
+              <div className="message_item">{el.message}</div>
+            </div>
+          </li>
+        ) : (
+          <li key={i} className={`messages__from sender`}>
+            <div className="profile_photo">
+              <img src="./img/profilefoto.svg" alt="profilefoto" />
+            </div>
+            <div className="messages">
+              <div className="message_item">{el.message}</div>
+            </div>
+          </li>
+        )
       )}
-      <MessageData />
-    </div>
+    </ul>
   );
 }
 

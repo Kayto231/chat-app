@@ -23,7 +23,11 @@ export const loginExistingUserFunction = (object) => {
 
     if (response) {
       dispatch(
-        loginUserInAction({ user: { username, id }, token: token, state: true })
+        loginUserInAction({
+          user: { username, id },
+          token: token,
+          state: true,
+        })
       );
     }
   };

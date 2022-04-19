@@ -5,12 +5,14 @@ function ChatsAsideItem({
   onClick,
   name,
   img,
+  senderId,
   lastMessage,
   messages,
+  conversation,
 }) {
   return (
     <div
-      onClick={() => onClick(messages)}
+      onClick={() => onClick(conversation)}
       className={`chat__profile__info ${isActive}`}
     >
       <div className="chat__profile__photo">
