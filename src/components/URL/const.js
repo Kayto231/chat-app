@@ -9,10 +9,10 @@ export const getMessagesUrl =
 export const socketConnectionUrl = "ws://socketio-alex-chat.herokuapp.com/";
 
 export const getconversations =
-  "http://alex-chat-app-e.herokuapp.com/chat/getconversations";
+  "https://alex-chat-app-e.herokuapp.com/chat/getconversations";
 
 export const createNewMessage =
-  "http://alex-chat-app-e.herokuapp.com/chat/createnewmessage";
+  "https://alex-chat-app-e.herokuapp.com/chat/createnewmessage";
 
 // export const getconversations = "http://localhost:5000/chat/getconversations";
 
