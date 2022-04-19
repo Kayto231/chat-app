@@ -5,7 +5,8 @@ export const authUrl = "https://alex-chat-app-e.herokuapp.com/auth/";
 
 export const getMessagesUrl =
   "https://alex-chat-app-e.herokuapp.com/chat/getmessages";
-export const socketConnectionUrl = "ws://socketio-alex-chat.herokuapp.com/";
+
+export const socketConnectionUrl = "wss://socketio-alex-chat.herokuapp.com/";
 
 export const getconversations =
   "https://alex-chat-app-e.herokuapp.com/chat/getconversations";
