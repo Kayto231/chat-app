@@ -24,7 +24,9 @@ function ChatPage() {
   }, []);
 
   useEffect(() => {
-    const socket = io(socketConnectionUrl);
+    const socket = io(socketConnectionUrl, {
+      transports: ["websocket", "polling", "flashsocket"],
+    });
     dispatch(createNewSocketFunction(socket, user.id, currentMessages));
   }, [user]);
 

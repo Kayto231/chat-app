@@ -25,4 +25,4 @@ export const createNewMessage =
 
 // export const createNewMessage = "http://localhost:5000/chat/createnewmessage";
 
-// export const socketConnectionUrl = "ws://localhost:5001";
+// export const socketConnectionUrl = "ws://localhost:5000";
