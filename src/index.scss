@@ -649,6 +649,9 @@ body {
   }
 }
 @media screen and (max-width: 770px) {
+input, select, textarea {
+    font-size: 16px;
+  }
   .wrapper {
     .chatpage {
       .main__header {
