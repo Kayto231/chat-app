@@ -280,12 +280,14 @@ body {
     height: 100%;
 
     .main__header {
-      flex: 0 0 10%;
+      flex: 1 1 10%;
       display: flex;
+      min-height: 100px;
       margin-bottom: 10px;
 
       .profile__info {
-        flex: 0 0 35%;
+        width: 100%;
+
         background: #e3f6fc;
         border-radius: 0px 0px 14px 14px;
         display: flex;
@@ -298,6 +300,7 @@ body {
           display: flex;
           flex-direction: column;
           margin-right: 100px;
+
           .status__block {
             margin-top: 2px;
             display: flex;
@@ -330,7 +333,6 @@ body {
           align-items: center;
           cursor: pointer;
           width: 20px;
-          // margin-bottom: 10px;
           position: relative;
 
           .dropdown__menu {
@@ -364,7 +366,7 @@ body {
         }
       }
       .switcher__buttons {
-        flex: 1 1 65%;
+        flex: 0 0 65%;
         max-height: 100px;
         display: flex;
         justify-content: center;
@@ -420,9 +422,9 @@ body {
       }
       .chatpage__navigation {
         display: flex;
-        flex: 1 1 54%;
         flex-direction: column;
-        height: 100%;
+
+        flex: 1 1 55%;
         background: #e3f6fc;
         border-radius: 14px 14px 0px 0px;
 
@@ -433,6 +435,7 @@ body {
           &::-webkit-scrollbar {
             display: none;
           }
+
           .active_chat {
             background: #6588de;
             box-shadow: 0px 8px 40px rgba(0, 72, 251, 0.3);
@@ -442,7 +445,6 @@ body {
             cursor: pointer;
             width: 310px;
             height: 74px;
-            // margin: 20px 17px 0px 17px;
             display: flex;
             align-items: center;
             transition: transform 0.3s ease-in-out;
@@ -587,7 +589,7 @@ body {
           align-items: center;
           border-top: 1px solid grey;
           width: 100%;
-          max-height: 45px;
+          min-height: 70px;
           background-color: #ffffff;
 
           .menu__settings {
