@@ -50,9 +50,6 @@ function ChatMessages() {
               <img src="./img/menusettings.svg" alt="menusettings" />
             </div>
             <div className="input__menu">
-              <div className="attachment_icon">
-                <img src="./img/attachment-icon.svg" alt="attachment-icon" />
-              </div>
               <div className="input__block">
                 <input
                   value={message}
