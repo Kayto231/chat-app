@@ -15,10 +15,10 @@ export const createNewMessage =
   "https://alex-chat-app-e.herokuapp.com/chat/createnewmessage";
 
 export const getAllUsersUrl =
-  "http://alex-chat-app-e.herokuapp.com/chat/getusers";
+  "https://alex-chat-app-e.herokuapp.com/chat/getusers";
 
 export const createNewConversationUrl =
-  "http://alex-chat-app-e.herokuapp.com/chat/createconversation";
+  "https://alex-chat-app-e.herokuapp.com/chat/createconversation";
 
 // export const loginUrl = "http://localhost:5000/auth/login";
 // export const registerUrl = "http://localhost:5000/auth/register";

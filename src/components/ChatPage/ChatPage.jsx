@@ -29,8 +29,13 @@ function ChatPage() {
   useEffect(() => {
     const socket = io(socketConnectionUrl, {
       cors: {
-        origin: "http://localhost:3000",
-        credentials: true,
+        // origin: "http://localhost:3000",
+        // credentials: true,
+        // extraHeaders: { "access-header": "hello" },
+        withCredentials: true,
+        extraHeaders: {
+          "my-custom-header": "abcd",
+        },
       },
       transports: ["websocket"],
     });

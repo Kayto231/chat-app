@@ -27,7 +27,7 @@ export const createNewSocketFunction = ({ socket }) => {
     dispatch(createNewSocketAction(socket));
 
     const { currentSocket } = getState().socket;
-
+    console.log(currentSocket);
     currentSocket.on("greet", (message) => {});
     currentSocket.emit("addUserToOnlineList", user.id);
 
