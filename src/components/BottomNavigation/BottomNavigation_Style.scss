@@ -1,0 +1,21 @@
+.bottom__panel {
+  flex: 0;
+  margin-bottom: 20px;
+  .bottom__menu {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    .item {
+      cursor: pointer;
+      margin-right: 60px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .active {
+      border-bottom: 2px solid #6588de;
+      filter: invert(100%) sepia(100%) saturate(1185%) hue-rotate(197deg)
+        brightness(100%) contrast(100%);
+    }
+  }
+}

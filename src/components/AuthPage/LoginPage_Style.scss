@@ -1,0 +1,152 @@
+@mixin d-flexCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@mixin d-columnCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__container {
+  @include d-flexCenter();
+
+  background-color: #e5e5e5;
+  height: 100%;
+  width: 100%;
+
+  .login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    min-width: 375px;
+    height: 100%;
+
+    .error__while_login {
+      color: red;
+    }
+
+    .login__password {
+      .password__block {
+        position: relative;
+        .showpass__icon {
+          z-index: 10;
+          width: 24px;
+          height: 24px;
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+    .text {
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 400;
+      font-style: normal;
+      color: #224957;
+    }
+    .text__big {
+      font-size: 64px;
+      line-height: 80px;
+    }
+    .text__small {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 300px;
+
+      .remember__me {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        .checkbox {
+          width: 13px;
+          height: 13px;
+          margin-right: 7px;
+          background: #224957;
+          border-radius: 3px;
+        }
+
+        .rebember__me__text {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          text-align: center;
+          color: #093545;
+        }
+      }
+      .forgot__pass {
+        .forgot__link {
+          text-decoration: none;
+
+          .forgot__pass__text {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: #000000;
+          }
+        }
+      }
+    }
+    .button {
+      background: #20df7f;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      width: 300px;
+      height: 45px;
+      margin: 10px 0px;
+      border: 0;
+      cursor: pointer;
+
+      transition: color 0.3s ease-in-out;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+    .register__button__block {
+      display: flex;
+      flex-direction: column;
+
+      .register__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #000;
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .img__background {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+}

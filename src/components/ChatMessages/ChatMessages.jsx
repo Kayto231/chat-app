@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addNewMessageToArrayAction,
-  createNewMessageFunction,
-} from "../../redux/actions/chatactions";
+import { addNewMessageToArrayAction } from "../../redux/actions/chatactions";
 
 import Messages from "./Messages";
+import "./ChatMessages_Style.scss";
+import ChatInput from "../ChatInput/ChatInput";
 
 function ChatMessages() {
-  const { user } = useSelector((state) => state.user);
-  const { isChatOpened, currentMessages, currentConversation, arrivalMessage } =
+  const { isChatOpened, currentMessages, arrivalMessage, currentConversation } =
     useSelector((state) => state.chat);
-  const { currentSocket } = useSelector((state) => state.socket);
-  const [message, setInput] = useState("");
   const dispatch = useDispatch();
 
-  const handleSendMessage = () => {
-    const recevierId = currentConversation.members.find((id) => id !== user.id);
-
-    dispatch(
-      createNewMessageFunction(
-        currentSocket,
-        currentConversation,
-        user.id,
-        recevierId,
-        message,
-        currentMessages
-      )
-    );
-    setInput("");
-  };
   useEffect(() => {
-    dispatch(addNewMessageToArrayAction([...currentMessages, arrivalMessage]));
+    arrivalMessage &&
+      currentConversation?.members?.includes(arrivalMessage?.sender) &&
+      dispatch(
+        addNewMessageToArrayAction([...currentMessages, arrivalMessage])
+      );
   }, [arrivalMessage]);
 
   return (
@@ -45,38 +30,7 @@ function ChatMessages() {
           <div className="messages__block">
             <Messages currentMessages={currentMessages} />
           </div>
-          <div className="input__panel">
-            <div className="menu__settings">
-              <img src="./img/menusettings.svg" alt="menusettings" />
-            </div>
-            <div className="input__menu">
-              <div className="input__block">
-                <input
-                  value={message}
-                  onChange={(e) => setInput(e.target.value)}
-                  className="input__message"
-                  type="text"
-                  placeholder="Type a new message..."
-                />
-              </div>
-              <div
-                className={
-                  message.length >= 1
-                    ? "send__button"
-                    : "send__button opacity05"
-                }
-              >
-                <button
-                  onClick={() => handleSendMessage()}
-                  className="button "
-                  disabled={message.length >= 1 ? false : true}
-                >
-                  <span className="button_text">Send</span>
-                  <img src="./img/sendplane.svg" alt="sendplane" />
-                </button>
-              </div>
-            </div>
-          </div>
+          <ChatInput />
         </div>
       ) : (
         <div className={isChatOpened ? "welcome" : "welcome opacity0"}>

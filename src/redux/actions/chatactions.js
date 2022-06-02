@@ -1,16 +1,21 @@
-import axios from "axios";
-import {
-  createNewMessage,
-  getconversations,
-  getMessagesUrl,
-} from "../../components/URL/const";
 import {
   ADD_NEW_MESSAGE_TO_ARRAY,
   CREATE_NEW_MESSAGE,
   EXIT_CURRENT_CHAT,
+  GET_ALL_USERS,
   GET_CONVERSATIONS,
+  LOG_OUT_CHAT,
   SET_MESSAGES,
-} from "../const";
+} from "../reducers/ChatReducer/const";
+import {
+  createNewConversationUrl,
+  createNewMessage,
+  getAllUsersUrl,
+  getconversations,
+  getMessagesUrl,
+} from "../../components/URL/const";
+
+import axios from "axios";
 
 export const addNewMessageToArrayAction = (array) => ({
   type: ADD_NEW_MESSAGE_TO_ARRAY,
@@ -29,6 +34,13 @@ export const createNewMessageAction = (array) => ({
   payload: array,
 });
 
+export const getAllUsers = (array) => ({
+  type: GET_ALL_USERS,
+  payload: array,
+});
+export const logOutChatAction = () => ({
+  type: LOG_OUT_CHAT,
+});
 export const exitCurrentChatAction = () => ({
   type: EXIT_CURRENT_CHAT,
   payload: {
@@ -40,10 +52,13 @@ export const exitCurrentChatAction = () => ({
 
 export const findMessagesFunction = (conv) => {
   return async (dispatch) => {
-    const response = await axios.post(getMessagesUrl, { conversationId: conv });
+    const response = await axios
+      .post(getMessagesUrl, { conversationId: conv })
+      .then((res) => res.data);
+
     dispatch(
       setCurrentChatMessagesAction({
-        messages: response.data,
+        messages: response,
         currentConversation: conv,
         isChatOpened: true,
       })
@@ -51,35 +66,71 @@ export const findMessagesFunction = (conv) => {
   };
 };
 
-export const getConversationsFunction = (userId) => {
-  return async (dispatch) => {
-    const response = await axios.post(getconversations, { sender: userId });
-    dispatch(getConversationsAction(response.data));
+export const getConversationsFunction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const { user } = getState().user;
+      const response = await axios
+        .post(getconversations, { sender: user.id })
+        .then((res) => res.data);
+
+      dispatch(getConversationsAction(response));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const createNewMessageFunction = (
-  currentSocket,
-  currentConversation,
-  sender,
-  recevierId,
-  message,
-  messages
-) => {
-  return async (dispatch) => {
+export const createNewMessageFunction = ({ recevierId, message }) => {
+  return async (dispatch, getState) => {
+    const { user } = getState().user;
+    const { currentConversation, currentMessages } = getState().chat;
+    const { currentSocket } = getState().socket;
+
     const newMessage = await axios.post(createNewMessage, {
       conversationId: currentConversation._id,
-      sender,
+      sender: user.id,
       message,
     });
-    currentSocket.emit("sendMessage", { sender, recevierId, message });
+
+    currentSocket.emit("sendMessage", { sender: user.id, recevierId, message });
 
     dispatch(
       setCurrentChatMessagesAction({
-        messages: [...messages, newMessage.data],
+        messages: [...currentMessages, newMessage.data],
         currentConversation: currentConversation,
         isChatOpened: true,
       })
     );
+  };
+};
+
+export const createNewConversationFunction = ({ user, chatUser }) => {
+  return async (dispatch, getState) => {
+    try {
+      const members = [user.id, chatUser._id];
+      const response = await axios
+        .post(createNewConversationUrl, members)
+        .then((res) => res.data);
+
+      if (response) {
+        dispatch(getConversationsFunction());
+        return new Promise((resolve) => resolve(response));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const getAllUsersFunction = () => {
+  return async (dispatch) => {
+    try {
+      const users = await axios.get(getAllUsersUrl).then((res) => res.data);
+
+      dispatch(getAllUsers(users));
+    } catch (e) {
+      console.log(e);
+    }
   };
 };

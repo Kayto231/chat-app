@@ -1,38 +1,57 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  findMessagesFunction,
+  getAllUsersFunction,
   getConversationsFunction,
 } from "../../redux/actions/chatactions";
 import ChatMessages from "../ChatMessages/ChatMessages";
-import ChatsAsideItem from "../ChatsItem/ChatsAsideItem";
 import NavBar from "../Navbar/Navbar";
 import { createNewSocketFunction } from "../../redux/actions/sokectActions";
 import { socketConnectionUrl } from "../URL/const";
 import { io } from "socket.io-client";
+import "./ChatPage_Style.scss";
+import BottomNavigation from "../BottomNavigation/BottomNavigation";
+import ShowAsideItems from "../../Helpers/ShowAsideItems/ShowAsideItems";
+import FindContact from "../../Helpers/FindContact/FindContact";
 
 function ChatPage() {
   const { user } = useSelector((state) => state.user);
+  const { currentItem } = useSelector((state) => state.bottomNav);
 
-  const { isChatOpened, conversations, currentMessages } = useSelector(
-    (state) => state.chat
-  );
+  const { isChatOpened } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getConversationsFunction(user.id));
+    dispatch(getAllUsersFunction());
+    dispatch(getConversationsFunction());
   }, []);
 
   useEffect(() => {
     const socket = io(socketConnectionUrl, {
-      transports: ["websocket", "polling", "flashsocket"],
+      cors: {
+        origin: "http://localhost:3000",
+        credentials: true,
+      },
+      transports: ["websocket"],
     });
-    dispatch(createNewSocketFunction(socket, user.id, currentMessages));
+    dispatch(createNewSocketFunction({ socket }));
   }, [user]);
 
-  const chooseConversation = (conv) => {
-    dispatch(findMessagesFunction(conv));
-  };
+  function switchBottomNavItem() {
+    switch (currentItem) {
+      case 1:
+        return <ShowAsideItems />;
+      case 2:
+        return <div>2</div>;
+      case 3:
+        return <div>3</div>;
+      case 4:
+        return <FindContact />;
+      default:
+        return <ShowAsideItems />;
+    }
+  }
+
   return (
     <div className="chatpage">
       <NavBar />
@@ -44,32 +63,9 @@ function ChatPage() {
               : "chatpage__navigation"
           }
         >
-          <div className="chats">
-            {conversations.map((el, i) => {
-              return (
-                <ChatsAsideItem
-                  key={i}
-                  conversation={el}
-                  onClick={(conv) => chooseConversation(conv)}
-                />
-              );
-            })}
-          </div>
+          <div className="chats">{switchBottomNavItem()}</div>
           <div className="bottom__panel">
-            <ul className="bottom__menu">
-              <li className="item active">
-                <img src="./img/chats.svg" alt="chats" />
-              </li>
-              <li className="item">
-                <img src="./img/something.svg" alt="something" />
-              </li>
-              <li className="item">
-                <img src="./img/favorite.svg" alt="favorite" />
-              </li>
-              <li className="item">
-                <img src="./img/search.svg" alt="search" />
-              </li>
-            </ul>
+            <BottomNavigation />
           </div>
         </div>
         <ChatMessages />

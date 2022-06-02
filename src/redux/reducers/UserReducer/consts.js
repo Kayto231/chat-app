@@ -1,0 +1,5 @@
+export const SET_USER_TOKEN = "SET_USER_TOKEN";
+
+export const SET_CONVERSATIONS = "SET_CONVERSATIONS";
+export const LOG_OUT_USER = "LOG_OUT_USER";
+export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";

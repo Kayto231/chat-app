@@ -1,0 +1,61 @@
+.input__panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid grey;
+  width: 100%;
+  min-height: 70px;
+  background-color: #ffffff;
+
+  .menu__settings {
+    margin-inline: 10px;
+    flex: 0 0 fill;
+  }
+  .input__menu {
+    display: flex;
+    align-items: flex-end;
+    flex: 0 1 90%;
+    background: #fdfdfd;
+
+    .input__block {
+      display: flex;
+      justify-content: center;
+      height: 45px;
+      flex: 1 1 auto;
+
+      .input__message {
+        width: 100%;
+        outline: none;
+        border: 0;
+      }
+    }
+    .opacity05 {
+      opacity: 0.5;
+    }
+    .send__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      flex: 0 1 100px;
+      background: #6588de;
+      border-radius: 0px 0px 0px 14px;
+      height: 45px;
+      box-shadow: 0px 8px 40px rgba(0, 72, 251, 0.3);
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        outline: none;
+        border: 0;
+        color: #ffffff;
+
+        .button_text {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

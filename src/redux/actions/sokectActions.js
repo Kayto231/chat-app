@@ -1,8 +1,9 @@
+import { GET_MESSAGES } from "../reducers/ChatReducer/const";
 import {
   CREATE_NEW_CONNECTION,
-  GET_MESSAGES,
+  LOG_OUT_SOCKET,
   SET_ONLINE_USERS_LIST,
-} from "../const";
+} from "../reducers/SocketReducer/consts";
 
 export const createNewSocketAction = (socket) => ({
   type: CREATE_NEW_CONNECTION,
@@ -16,18 +17,27 @@ export const getMessagesSocketAction = (messages) => ({
   type: GET_MESSAGES,
   payload: messages,
 });
+export const logOutSocketAction = () => ({
+  type: LOG_OUT_SOCKET,
+});
 
-export const createNewSocketFunction = (socket, userId) => {
-  return async (dispatch) => {
-    socket.emit("addUserToOnlineList", userId);
-    socket.on("sendAllUsersOnline", (users) => {
+export const createNewSocketFunction = ({ socket }) => {
+  return async (dispatch, getState) => {
+    const { user } = getState().user;
+    dispatch(createNewSocketAction(socket));
+
+    const { currentSocket } = getState().socket;
+
+    currentSocket.on("greet", (message) => {});
+    currentSocket.emit("addUserToOnlineList", user.id);
+
+    currentSocket.on("sendAllUsersOnline", (users) => {
       dispatch(setOnlineListAction(users));
     });
 
-    socket.on("getMessage", (message) => {
+    currentSocket.on("getMessage", (message) => {
+      console.log(message);
       dispatch(getMessagesSocketAction(message));
     });
-    socket.on("greet", (message) => {});
-    dispatch(createNewSocketAction(socket));
   };
 };

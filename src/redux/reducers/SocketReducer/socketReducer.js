@@ -1,4 +1,8 @@
-import { CREATE_NEW_CONNECTION, SET_ONLINE_USERS_LIST } from "../const";
+import {
+  CREATE_NEW_CONNECTION,
+  LOG_OUT_SOCKET,
+  SET_ONLINE_USERS_LIST,
+} from "./consts";
 
 const initialState = {
   currentSocket: {},
@@ -17,7 +21,11 @@ export const socketReducer = (state = initialState, action) => {
         ...state,
         usersOnline: action.payload,
       };
-
+    case LOG_OUT_SOCKET:
+      return {
+        currentSocket: {},
+        usersOnline: [],
+      };
     default:
       return {
         ...state,

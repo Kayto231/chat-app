@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  exitCurrentChatAction,
-  setActiveStateChatAction,
-  setCurrentChatMessagesAction,
-} from "../../redux/actions/chatactions";
-import { logOutFunction } from "../../redux/actions/useractions";
+import { exitCurrentChatAction } from "../../redux/actions/chatactions";
+import { logOutUserFunction } from "../../redux/actions/useractions";
+import "./NavBar_Style.scss";
 
 function NavBar() {
   const { isChatOpened } = useSelector((state) => state.chat);
@@ -13,9 +10,12 @@ function NavBar() {
   const dispatch = useDispatch();
   const [display, setDisplay] = useState(false);
 
-  const handleExit = () => {
+  function handleExit() {
     dispatch(exitCurrentChatAction());
-  };
+  }
+  function logOutFunction() {
+    dispatch(logOutUserFunction());
+  }
   return (
     <header className="main__header">
       <div className="profile__info">
@@ -36,10 +36,7 @@ function NavBar() {
               display ? "dropdown__menu " : "dropdown__menu display__none"
             }
           >
-            <span
-              onClick={() => dispatch(logOutFunction())}
-              className="dropdown__item"
-            >
+            <span onClick={logOutFunction} className="dropdown__item">
               Logout
             </span>
             <span className="dropdown__item">Profile</span>
@@ -55,6 +52,9 @@ function NavBar() {
         <button className="button left isActive">Chat</button>
         <button className="button">Media</button>
       </div>
+      {display && (
+        <div onClick={() => setDisplay(!display)} className="wrapper"></div>
+      )}
     </header>
   );
 }

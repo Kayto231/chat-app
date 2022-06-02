@@ -2,10 +2,12 @@ import {
   ADD_NEW_MESSAGE_TO_ARRAY,
   CREATE_NEW_MESSAGE,
   EXIT_CURRENT_CHAT,
+  GET_ALL_USERS,
   GET_CONVERSATIONS,
   GET_MESSAGES,
+  LOG_OUT_CHAT,
   SET_MESSAGES,
-} from "../const";
+} from "./const";
 
 const initialState = {
   isChatOpened: false,
@@ -13,6 +15,7 @@ const initialState = {
   currentConversation: {},
   currentMessages: [],
   arrivalMessage: {},
+  allUsers: [],
 };
 
 export const chatReducer = (state = initialState, action) => {
@@ -21,8 +24,12 @@ export const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         isChatOpened: action.payload.isChatOpened,
-        currentConversationId: action.payload.currentConversationId,
         currentMessages: action.payload.currentMessages,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
       };
     case GET_CONVERSATIONS:
       return {
@@ -50,6 +57,15 @@ export const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         currentMessages: action.payload,
+      };
+    case LOG_OUT_CHAT:
+      return {
+        isChatOpened: false,
+        conversations: [],
+        currentConversation: {},
+        currentMessages: [],
+        arrivalMessage: {},
+        allUsers: [],
       };
     default:
       return {

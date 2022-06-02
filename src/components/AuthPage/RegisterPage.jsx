@@ -1,86 +1,108 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerNewUserFunction } from "../../redux/actions/useractions";
+import "./RegisterPage_Style.scss";
+import { useInput } from "../../Hooks/useInput/useInput";
+import MyInput from "../Attoms/MyInput/MyInput";
+import LinkButton from "../Attoms/LinkButton/LinkButton";
+import AuthButton from "../Attoms/AuthButton/AuthButton";
+import MyButton from "../Attoms/MyButton/MyButton";
 
 function RegisterPage() {
-  const [nickname, setNickname] = useState("");
-  const [nicknameError, setNicknameError] = useState(false);
+  const nickname = useInput("", {
+    isEmpty: true,
+    minLength: 3,
+  });
+  const password = useInput("", {
+    isEmpty: true,
+    minLength: 4,
+  });
 
-  const [password, setPassword] = useState("");
-  const [passwordError, serPasswordError] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
-  const [disabled, setDisabled] = useState(false);
+  useEffect(() => {
+    if (nickname.minLengthError || password.minLengthError) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [nickname.minLengthError, password.minLengthError]);
 
   const dispatch = useDispatch();
   const handleLogin = () => {
-    dispatch(registerNewUserFunction({ username: nickname, password }));
-    setNickname("");
-    setPassword("");
+    dispatch(
+      registerNewUserFunction({
+        username: nickname.value,
+        password: password.value,
+      })
+    );
   };
-  const setNicknameHandler = (event) => {
-    setNickname(event.target.value);
-    nickname.length <= 3 ? setNicknameError(true) : setNicknameError(false);
-  };
-  const setPasswordHandler = (event) => {
-    setPassword(event.target.value);
-    password.length <= 3 ? serPasswordError(true) : serPasswordError(false);
-    nickname.length >= 3 && password.length >= 3
-      ? setDisabled(false)
-      : setDisabled(true);
-  };
+
   return (
     <div className="register__container">
       <div className="register__form">
         <h1 className="text text__big">Register</h1>
         <span className="text text__small">Sign in and start chatting!</span>
         <div className="register__nickname column">
-          {nicknameError && (
+          {nickname.isValueDirty && nickname.isEmpty && (
             <span className="is__error__in__nickname">
-              Nickname must be longer than 4 symbols
+              Nickname cannot be empty.
             </span>
           )}
-          <input
-            className="input"
-            type="text"
-            placeholder="Type your nickname."
-            value={nickname}
-            onChange={(e) => setNicknameHandler(e)}
+          {nickname.minLengthError && !nickname.isEmpty && (
+            <span className="is__error in__nickname">
+              Nickname must be longer than 3 symbols.
+            </span>
+          )}
+          <MyInput
+            className={"input"}
+            type={"text"}
+            placeholder={"Type your login."}
+            value={nickname.value}
+            onChange={(e) => nickname.onChange(e)}
+            onBlur={(e) => nickname.onBlur(e)}
           />
         </div>
         <div className="register__password column">
-          {passwordError && (
+          {password.isValueDirty && password.isEmpty && (
             <span className="is__error__in__pasword">
-              Nickname must be longer than 4 symbols
+              Password cannot be empty.
             </span>
           )}
-          <input
-            className="input"
-            type="password"
-            placeholder="Type your password."
-            value={password}
-            onChange={(e) => setPasswordHandler(e)}
+          {password.minLengthError && !password.isEmpty && (
+            <span className="is__error in__pasword">
+              Password must be longer than 5 symbols.
+            </span>
+          )}
+          <MyInput
+            className={"input"}
+            type={"password"}
+            placeholder={"Type your password."}
+            value={password.value}
+            onChange={(e) => password.onChange(e)}
+            onBlur={(e) => password.onBlur(e)}
           />
         </div>
         <div className="register__button__block">
-          <button
-            className="button register__button"
-            disabled={disabled}
+          <AuthButton
+            className={"button register__button"}
+            span={"button register__button"}
             onClick={() => handleLogin()}
-          >
-            <span className="button__text">Register</span>
-          </button>
-          <Link className="button link__login" to={"/auth/login"}>
-            Get back!
-          </Link>
-        </div>
-        <div className="img">
-          <img
-            src={"./img/authbackground.svg"}
-            className="img__background"
-            alt="authbackground"
+            disabled={disabled}
+            text={"Register"}
+          />
+          <LinkButton
+            className={"button link__login"}
+            path={"/auth/login"}
+            spanClassName={"button__text"}
+            text={"Login"}
           />
         </div>
+        <img
+          src={"./img/authbackground.svg"}
+          className="img__background"
+          alt="authbackground"
+        />
       </div>
     </div>
   );

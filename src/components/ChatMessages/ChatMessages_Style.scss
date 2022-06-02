@@ -1,0 +1,54 @@
+.chatpage__messages {
+  flex: 1 1 75%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .messages__block {
+    padding: 10px;
+    flex: 1 1 auto;
+
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .main_messages_panel {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .messages__from {
+        display: flex;
+        width: 100%;
+        padding-bottom: 20px;
+
+        .message_item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 45px;
+          min-width: 140px;
+          background: #e3f6fc;
+          border-radius: 0px 14px 14px 14px;
+          padding: 10px;
+        }
+      }
+
+      .me {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .profile_photo {
+          margin: 0px 20px 0px 10px;
+        }
+
+        .message_item {
+          justify-content: center;
+          background: #f3ba4a;
+          border-radius: 14px 0px 14px 14px;
+        }
+      }
+    }
+  }
+}
